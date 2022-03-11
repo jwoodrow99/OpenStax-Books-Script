@@ -65,7 +65,7 @@ const downloadBooks = async (downloadLinkList) => {
 	console.log(`Writing GoalKicker content to "${dir}"...`);
 
 	for (const [index, book] of downloadLinkList.entries()) {
-		let name = `${dir}${book.name}`;
+		let name = `${dir}${book.name}.pdf`;
 		let url = book.link;
 		let file = fs.createWriteStream(name);
 
