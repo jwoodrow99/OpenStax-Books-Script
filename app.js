@@ -1,6 +1,7 @@
 // Dependencies
 const axios = require('axios');
 const fs = require('fs');
+const { resolve } = require('path');
 const path = require('path');
 
 // Global Vars
@@ -69,13 +70,25 @@ const downloadBooks = async (downloadLinkList) => {
 		let url = book.link;
 		let file = fs.createWriteStream(name);
 
+		console.log(
+			`Starting download of File (${index + 1}/${downloadLinkList.length}) ${
+				book.name
+			}...`
+		);
+
 		const response = await axios({
 			url,
 			method: 'GET',
 			responseType: 'stream',
 		});
 
-		await response.data.pipe(file);
+		const pipe = response.data.pipe(file);
+
+		await new Promise((resolve, reject) =>
+			pipe.on('finish', () => {
+				resolve();
+			})
+		);
 
 		console.log(
 			`Downloaded File (${index + 1}/${downloadLinkList.length}) ${
