@@ -1,0 +1,15 @@
+{
+  "name": "openstax-books-script",
+  "version": "1.0.0",
+  "description": "A tiny js script (nodejs) to download all ebooks from OpenStax",
+  "main": "app.js",
+  "scripts": {
+    "start": "node ./app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.26.1"
+  }
+}
